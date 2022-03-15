@@ -28,11 +28,9 @@ class Conversation:
             self.send_reply(line, " Nimsilu-XY running Fairy-Stockfish 013070 (lichess-bot v2.2.0)" )
         elif cmd == "howto":
             self.send_reply(line, "How to run: Check out 'Lichess Bot API'")
-        elif cmd == "eval" and line.room == "spectator":
-            stats = self.engine.get_stats()
+        elif cmd == "eval"::
+            stats = self.engine.get_stats(for_chat=True)
             self.send_reply(line, ", ".join(stats))
-        elif cmd == "eval":
-            self.send_reply(line, "{max_score:.2f} to -{max_score:.2f} for the last {consecutive_moves} moves.")
         elif cmd == "queue":
             if self.challengers:
                 challengers = ", ".join(["@" + challenger.challenger_name for challenger in reversed(self.challengers)])
