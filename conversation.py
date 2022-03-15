@@ -34,23 +34,6 @@ class Conversation:
             self.send_reply(line, ", ".join(stats))
         elif cmd == "eval":
             self.send_reply(line, "I don't tell that to my opponent, sorry.")
-         elif command == 'cpu':
-            return self.cpu
-        def _get_cpu(self) -> str:
-        if os.path.exists('/proc/cpuinfo'):
-            with open('/proc/cpuinfo', 'r') as cpuinfo:
-                while line := cpuinfo.readline():
-                    if line.startswith('model name'):
-                        cpu = line.split(': ')[1]
-                        cpu = cpu.replace('(R)', '')
-                        cpu = cpu.replace('(TM)', '')
-                        return cpu
-
-        if cpu := platform.processor():
-            return cpu
-
-        return 'Unknown' ))
-    
         elif cmd == "queue":
             if self.challengers:
                 challengers = ", ".join(["@" + challenger.challenger_name for challenger in reversed(self.challengers)])
