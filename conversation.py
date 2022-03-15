@@ -3,7 +3,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class Conversation:
+class Conversation():
     def __init__(self, game, engine, xhr, version, challenge_queue):
         self.game = game
         self.engine = engine
@@ -14,22 +14,23 @@ class Conversation:
     command_prefix = "!"
 
     def react(self, line, game):
-        logger.info("*** {} [{}] {}: {}".format(self.game.url(), line.room, line.username, line.text.encode("utf-8")))
+        print("*** {} [{}] {}: {}".format(self.game.url(), line.room, line.username, line.text.encode("utf-8")))
         if (line.text[0] == self.command_prefix):
             self.command(line, game, line.text[1:].lower())
+        pass
 
     def command(self, line, game, cmd):
         if cmd == "commands" or cmd == "help":
-            self.send_reply(line, "Supported commands: !wait, !name, !howto, !eval, !queue, !creator")
+            self.send_reply(line, "Supported commands: !name, !howto, !eval, !queue")
         elif cmd == "wait" and game.is_abortable():
             game.ping(60, 120)
             self.send_reply(line, "Waiting 60 seconds...")
         elif cmd == "name":
-            self.send_reply(line, " Nimsilu-XY running Fairy-Stockfish 013070 (lichess-bot v2.2.0)" )
+            self.send_reply(line, "{} (lichess-bot v{})".format(self.engine.name(), self.version))
         elif cmd == "howto":
-            self.send_reply(line, "How to run: Check out 'Lichess Bot API'")
-        elif cmd == "eval"::
-            stats = self.engine.get_stats(for_chat=True)
+            self.send_reply(line, "How to run your own bot: lichess.org/api#tag/Chess-Bot")
+        elif cmd == "eval":
+            stats = self.engine.get_stats()
             self.send_reply(line, ", ".join(stats))
         elif cmd == "queue":
             if self.challengers:
@@ -41,12 +42,8 @@ class Conversation:
     def send_reply(self, line, reply):
         self.xhr.chat(self.game.id, line.room, reply)
 
-    def send_message(self, room, message):
-        if message:
-            self.send_reply(ChatLine({"room": room}), message)
 
-
-class ChatLine:
+class ChatLine():
     def __init__(self, json):
         self.room = json.get("room")
         self.username = json.get("username")
