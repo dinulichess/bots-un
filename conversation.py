@@ -36,8 +36,7 @@ class Conversation:
             self.send_reply(line, "I don't tell that to my opponent, sorry.")
          elif command == 'cpu':
             return self.cpu
-
-    def _get_cpu(self) -> str:
+        def _get_cpu(self) -> str:
         if os.path.exists('/proc/cpuinfo'):
             with open('/proc/cpuinfo', 'r') as cpuinfo:
                 while line := cpuinfo.readline():
