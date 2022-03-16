@@ -14,7 +14,7 @@ engine:                      # Engine settings.
         - Cerebellum3Merge.bin
         - Goi5.1.bin
       antichess:                # List of book file paths for variant antichess.
-        - engines/antibest.bin
+        - antichess.bin
       atomic:                   # List of book file paths for variant atomic.
         -  atomic.bin
       crazyhouse:               # List of book file paths for variant crazyhouse.
@@ -40,8 +40,8 @@ engine:                      # Engine settings.
  
 option name Contempt type spin : 24
 option name Analysis Contempt type combo : Both var Off var White var Black var Both
-option name Threads type spin : 9
-option name Hash type spin : 5078
+option name Threads type spin : 11
+option name Hash type spin : 3098
 option name Ponder type check : true
 option name MultiPV type spin : 1
 option name Skill Level type spin : 20
@@ -58,9 +58,9 @@ option name Syzygy50MoveRule type check : true
 option name SyzygyProbeLimit type spin : 7
 option name Use NNUE type check : true
 option name UCI_Variants type check: true
-#    go_commands:             # additional options to pass to the UCI go command
-#      nodes: 5000               # Search so many nodes only.
-#      depth: 20               # Search depth ply only.
+     go_commands:             # additional options to pass to the UCI go command
+       nodes: 0               # Search so many nodes only.
+       depth: 20               # Search depth ply only.
 #      movetime: 1         # Integer. Search exactly movetime milliseconds.
 #  xboard_options:            # arbitrary xboard options passed to the engine
 #    cores: "4"
