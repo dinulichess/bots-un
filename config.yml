@@ -2,9 +2,16 @@ token: "lip_G31XuxpH3aU9jDT9RBfD"   # Lichess OAuth2 Token.
 url: "https://lichess.org/"  # Lichess base URL.
 
 engine:                      # Engine settings.
-  dir: "/engines"          # Directory containing the engine. This can be an absolute path or one relative to lichess-bot/.
-  name: "fsf_linux"        # Binary name of the engine to use.
-  working_dir: ""            # Directory where the chess engine will read and write files. If blank or missing, the current directory is used.
+  dir: "./"          # Directory containing the engine. This can be an absolute path or one relative to lichess-bot/.
+  name: "chess-engine"        # Binary name of the engine to use.
+  working_dir: "./engine"            # Directory where the chess engine will read and write files. If blank or missing, the current directory is used.
+  Atomic: "fsf_linux"  # Binary name of the engine for atomic variant to use.
+  Antichess: "fsf_linux"  # Binary name of the engine for antichess variant to use.
+  Crazyhouse: "fsf_linux"  # Binary name of the engine for crazyhouse variant to use.
+  Horde: "fsf_linux"   # Binary name of the engine for horde variant to use.
+  King of the Hill: "fsf_linux"   # Binary name of the engine for koth variant to use.
+  Racing Kings: "fsf_linux"  # Binary name of the engine for racing kings variant to use.
+  Three-check: "fsf_linux"   # Binary name of the engine for three check variant to use.
   protocol: "uci"            # "uci" or "xboard"
   ponder: true               # Think on opponent's time.
   polyglot:
